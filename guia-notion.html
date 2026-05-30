@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía rápida Notion</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap');
+
+  :root {
+    --bg: #F7F6F2;
+    --surface: #FFFFFF;
+    --border: #E5E3DB;
+    --text: #1A1917;
+    --text2: #6B6960;
+    --text3: #9E9C95;
+    --accent: #2D5BE3;
+    --accent-bg: #EEF3FF;
+    --success: #2D7A4F;
+    --success-bg: #EDFAF3;
+    --warn: #92601A;
+    --warn-bg: #FFF6E6;
+    --tip-bg: #F0EEF8;
+    --tip: #4A3BAA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 40px 24px 60px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+
+  .subtitle {
+    color: var(--text2);
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin: 36px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--text);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .step-body { flex: 1; }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    color: var(--text2);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .callout {
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .callout.tip { background: var(--tip-bg); color: var(--tip); }
+  .callout.warn { background: var(--warn-bg); color: var(--warn); }
+  .callout.ok { background: var(--success-bg); color: var(--success); }
+  .callout.info { background: var(--accent-bg); color: var(--accent); }
+
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { flex: 1; }
+  .callout strong { font-weight: 600; }
+
+  .kbd {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1px 7px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  .link-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s;
+    cursor: pointer;
+  }
+
+  .link-block:hover { border-color: var(--accent); }
+
+  .link-icon { font-size: 22px; }
+  .link-title { font-weight: 600; font-size: 14px; }
+  .link-url { font-size: 12px; color: var(--text3); font-family: 'DM Mono', monospace; word-break: break-all; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--text2);
+  }
+
+  td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+  }
+
+  tr:nth-child(even) td { background: var(--bg); }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .pill.green { background: var(--success-bg); color: var(--success); }
+  .pill.blue { background: var(--accent-bg); color: var(--accent); }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: 500;
+  }
+
+  .flow-arrow { color: var(--text3); font-size: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Guía rápida de Notion</h1>
+<p class="subtitle">Para trabajar con Claude y guardar contexto entre conversaciones</p>
+
+<h2>1 — Acceder a tus páginas</h2>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-body">
+    <div class="step-title">Abre Notion en el navegador</div>
+    <div class="step-desc">Ve a <strong>notion.so</strong> e inicia sesión con la cuenta que tienes conectada a Claude.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-body">
+    <div class="step-title">Busca las páginas que creó Claude</div>
+    <div class="step-desc">En el panel izquierdo verás todas tus páginas. Busca:<br>
+      <strong>· Pizarra de flujos — Guión de trabajo y contexto</strong><br>
+      <strong>· Proyecto: Pizarra de flujos de trabajo — Decisiones técnicas</strong>
+    </div>
+  </div>
+</div>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <span class="callout-text">También puedes usar el buscador: pulsa <span class="kbd">Ctrl</span> + <span class="kbd">P</span> en Notion y escribe el nombre de la página.</span>
+</div>
+
+<h2>2 — Estructura de Notion que debes conocer</h2>
+
+<table>
+  <tr><th>Concepto</th><th>Qué es</th><th>Para qué sirve aquí</th></tr>
+  <tr>
+    <td><strong>Página</strong></td>
+    <td>Documento de texto libre</td>
+    <td>Guardar contexto, decisiones, guiones de trabajo</td>
+  </tr>
+  <tr>
+    <td><strong>Base de datos</strong></td>
+    <td>Tabla con propiedades</td>
+    <td>No la usamos por ahora</td>
+  </tr>
+  <tr>
+    <td><strong>Panel izquierdo</strong></td>
+    <td>Navegador de páginas</td>
+    <td>Acceder a todo tu contenido</td>
+  </tr>
+  <tr>
+    <td><strong>Workspace</strong></td>
+    <td>Tu espacio completo</td>
+    <td>Todo vive aquí, accesible desde cualquier dispositivo</td>
+  </tr>
+</table>
+
+<h2>3 — Cómo trabajar con Claude y Notion</h2>
+
+<p style="color:var(--text2);font-size:14px;margin-bottom:16px;">El flujo recomendado para cada sesión de trabajo:</p>
+
+<div class="flow">
+  <div class="flow-step">Abres Claude</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">Le dices "lee mi página de contexto del proyecto"</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">Claude la lee de Notion</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">Trabajáis</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">Al final: "actualiza la página con lo que hemos hecho"</div>
+</div>
+
+<div class="callout ok">
+  <span class="callout-icon">✅</span>
+  <span class="callout-text"><strong>Ventaja clave:</strong> Claude tiene Notion conectado, así que puede leer y escribir páginas directamente. No necesitas copiar y pegar nada manualmente.</span>
+</div>
+
+<h2>4 — Comandos útiles para decirle a Claude</h2>
+
+<table>
+  <tr><th>Lo que quieres</th><th>Lo que le dices a Claude</th></tr>
+  <tr>
+    <td>Recuperar contexto</td>
+    <td><em>"Lee la página de Notion del proyecto de pizarra de flujos"</em></td>
+  </tr>
+  <tr>
+    <td>Actualizar tareas</td>
+    <td><em>"Marca como hecha la tarea X en Notion"</em></td>
+  </tr>
+  <tr>
+    <td>Añadir notas</td>
+    <td><em>"Añade esto a la página del proyecto en Notion: [lo que sea]"</em></td>
+  </tr>
+  <tr>
+    <td>Crear nueva página</td>
+    <td><em>"Crea una página en Notion con el resumen de esta conversación"</em></td>
+  </tr>
+  <tr>
+    <td>Ver qué hay guardado</td>
+    <td><em>"¿Qué tengo guardado en Notion sobre este proyecto?"</em></td>
+  </tr>
+</table>
+
+<h2>5 — Buenas prácticas</h2>
+
+<div class="step">
+  <div class="step-num">✦</div>
+  <div class="step-body">
+    <div class="step-title">Una página por proyecto</div>
+    <div class="step-desc">Mantén todo el contexto de un proyecto en una sola página. Es más fácil para Claude recuperarlo.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">✦</div>
+  <div class="step-body">
+    <div class="step-title">Actualiza al final de cada sesión</div>
+    <div class="step-desc">Antes de cerrar Claude, pídele que actualice Notion con lo que se ha hecho y las tareas pendientes.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">✦</div>
+  <div class="step-body">
+    <div class="step-title">Empieza cada sesión con contexto</div>
+    <div class="step-desc">Dile a Claude que lea la página del proyecto antes de empezar. Así no tienes que repetir nada.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">✦</div>
+  <div class="step-body">
+    <div class="step-title">No borres páginas antiguas</div>
+    <div class="step-desc">Notion guarda historial. Si algo sale mal, puedes recuperar versiones anteriores.</div>
+  </div>
+</div>
+
+<div class="callout warn">
+  <span class="callout-icon">⚠️</span>
+  <span class="callout-text"><strong>Importante:</strong> Claude solo puede acceder a Notion cuando tienes la integración activa en Claude.ai. Si cambias de dispositivo o navegador, verifica que la conexión sigue activa en Ajustes → Integraciones.</span>
+</div>
+
+<h2>6 — Cómo empezar la próxima conversación</h2>
+
+<div class="callout info">
+  <span class="callout-icon">💬</span>
+  <span class="callout-text">
+    <strong>Mensaje de inicio recomendado:</strong><br><br>
+    <em>"Lee la página de Notion llamada 'Pizarra de flujos — Guión de trabajo y contexto' y dime en qué punto estamos."</em><br><br>
+    Claude leerá todo el contexto, el estado actual, las tareas pendientes y estará listo para continuar donde lo dejasteis.
+  </span>
+</div>
+
+</body>
+</html>
